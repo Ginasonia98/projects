@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { DataProvider } from './context';
+import HomePage from './homePage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <HomePage />
+    </DataProvider>
   );
-}
+};
+/**Fungsi komponen ini mengembalikan JSX yang merepresentasikan struktur aplikasi.
+Di dalam return, terdapat komponen <DataProvider>. Ini menunjukkan bahwa App adalah komponen tingkat atas dalam hierarki aplikasi dan memastikan bahwa data yang dibutuhkan oleh komponen-komponen lain di dalamnya tersedia melalui DataProvider.
+Di dalam <DataProvider>, terdapat komponen <HomePage>. Ini menunjukkan bahwa HomePage adalah komponen yang akan ditampilkan sebagai halaman utama dalam aplikasi. */
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
