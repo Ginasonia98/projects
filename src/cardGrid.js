@@ -114,7 +114,7 @@ Pada baris ke-46, kita menggunakan setCards untuk memperbarui nilai state cards 
           >
             <div className="card border-2 border-gray-300 rounded-md p-4 h-full flex flex-col justify-between">
               <div className="aspect-w-1 aspect-h-1 mb-4">
-                <div className="card rounded-md p-4 h-full flex flex-col justify-between">
+                <div className="card bg-gray-100 border-2 border-gray-300 rounded-md p-4 h-40 flex flex-col justify-between">
                   {card.url && (
                     <img
                       src={card.url}
