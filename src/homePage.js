@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './searchBar';
 import DataList from './dataList';
+import CardGrid from './cardGrid';
 
 const HomePage = () => {
   const [data, setData] = useState(() => {
@@ -111,6 +112,8 @@ Props yang dilewatkan ke komponen ini adalah value yang diisi dengan searchKeywo
             handleChange={handleChange}
             handleSaveNewData={handleSaveNewData}
           />
+          <br/>
+          <CardGrid/>
           {/*  Ini adalah komponen DataList yang digunakan untuk menampilkan daftar data pengguna.
 Props yang dilewatkan ke komponen ini adalah data yang diisi dengan filteredData, editingItemId yang diisi dengan editingItemId, newData yang diisi dengan newData, dan berbagai fungsi penangan peristiwa seperti handleEdit, handleDelete, handleSave, handleChange, dan handleSaveNewData. */}
         </div>
