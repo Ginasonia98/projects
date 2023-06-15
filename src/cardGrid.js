@@ -20,18 +20,26 @@ const CardGrid = () => {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
 
-    const newCard = {
-      id: Date.now(),
-      file: file,
-      url: URL.createObjectURL(file),
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imageURL = reader.result;
+      const newCard = {
+        id: Date.now(),
+        file: file,
+        url: imageURL,
+      };
+      setCards([...cards, newCard]);
     };
-
-    setCards([...cards, newCard]);
+    reader.readAsDataURL(file);
   };
-  /**handleFileUpload: Ini adalah fungsi yang dipanggil saat pengguna memilih file untuk diupload. Fungsi ini menerima event sebagai argumen, dan dari event tersebut kita dapat mengakses file yang dipilih melalui event.target.files[0].
-Pada baris ke-15, kita membuat objek baru untuk kartu yang akan ditambahkan dengan menggunakan Date.now() sebagai ID unik untuk kartu tersebut, dan menyimpan file yang dipilih sebagai properti file.
-Pada baris ke-16, kita menggunakan URL.createObjectURL untuk membuat URL objek untuk file yang diupload. URL objek ini akan digunakan untuk menampilkan gambar file yang diupload pada tampilan kartu.
-Pada baris ke-18, kita menggunakan setCards untuk memperbarui nilai state cards dengan menambahkan kartu baru ke dalam daftar kartu yang ada. Kita menggunakan spread operator ... untuk membuat salinan daftar kartu yang ada, kemudian menambahkan kartu baru di akhir daftar. */
+  /**const file = event.target.files[0];: Langkah pertama adalah mengambil file yang diunggah dari objek event. event.target mengacu pada elemen input file yang memicu peristiwa, dan event.target.files[0] mengambil file pertama yang dipilih oleh pengguna.
+const reader = new FileReader();: Selanjutnya, kita membuat objek FileReader yang akan digunakan untuk membaca konten file.
+reader.onload = () => {...};: Kita menetapkan fungsi callback untuk event onload dari FileReader. Fungsi ini akan dieksekusi setelah file selesai dibaca.
+reader.readAsDataURL(file);: Dalam langkah ini, kita memulai proses membaca file menggunakan metode readAsDataURL dari FileReader. Metode ini membaca file sebagai data URL base64.
+Saat file selesai dibaca, fungsi callback yang ditetapkan pada onload akan dijalankan. Pada tahap ini, reader.result akan berisi data URL base64 dari file yang diunggah.
+Selanjutnya, kita membuat objek baru newCard yang berisi informasi file yang diunggah, seperti id, file itu sendiri, dan URL gambar yang diperoleh dari reader.result.
+Terakhir, kita menggunakan fungsi setCards untuk memperbarui state cards dengan menambahkan objek newCard ke array cards yang ada.
+Dengan demikian, fungsi handleFileUpload membaca file yang diunggah menggunakan FileReader dan mengubahnya menjadi URL gambar base64 sebelum menyimpannya dalam state cards menggunakan setCards. Ini memungkinkan file yang diunggah tetap tersedia dan ditampilkan pada halaman ketika halaman diperbarui atau saat menjelajahi halaman lain. */
 
   const handleFileDownload = (file) => {
     const downloadURL = URL.createObjectURL(file);
@@ -148,4 +156,3 @@ Pada baris ke-46, kita menggunakan setCards untuk memperbarui nilai state cards 
 };
 
 export default CardGrid;
-
